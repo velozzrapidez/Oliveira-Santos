@@ -73,6 +73,7 @@ export default function Header() {
               Oliveira & Santos
             </div>
             <div
+              className="hidden sm:block"
               style={{
                 fontSize: '0.65rem',
                 color: '#d4a843',
