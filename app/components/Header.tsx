@@ -3,11 +3,23 @@
 import { useState, useEffect } from 'react';
 import { Scale, Phone, Menu, X } from 'lucide-react';
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1000); // 1000px threshold to avoid overlap
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+}
+
 const WHATSAPP_URL = 'https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+uma+an%C3%A1lise+gratuita+do+meu+caso+no+INSS.';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -36,7 +48,7 @@ export default function Header() {
           : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(212,168,67,0.15)' : 'none',
-        padding: '1rem 1.5rem',
+        padding: '0.8rem 1.25rem',
       }}
     >
       <div
@@ -44,11 +56,11 @@ export default function Header() {
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
       >
         {/* Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div
             style={{
-              width: 38,
-              height: 38,
+              width: 34,
+              height: 34,
               borderRadius: '50%',
               background: 'linear-gradient(135deg, #f0c040, #c9a84c)',
               display: 'flex',
@@ -57,14 +69,14 @@ export default function Header() {
               flexShrink: 0,
             }}
           >
-            <Scale size={20} color="#0a1628" strokeWidth={2.5} />
+            <Scale size={18} color="#0a1628" strokeWidth={2.5} />
           </div>
           <div>
             <div
               style={{
                 fontFamily: 'Playfair Display, serif',
                 fontWeight: 700,
-                fontSize: '1.05rem',
+                fontSize: '1rem',
                 lineHeight: 1.1,
                 color: '#fff',
                 letterSpacing: '0.01em',
@@ -75,7 +87,7 @@ export default function Header() {
             <div
               className="hidden sm:block"
               style={{
-                fontSize: '0.65rem',
+                fontSize: '0.6rem',
                 color: '#d4a843',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
@@ -88,39 +100,42 @@ export default function Header() {
         </div>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="hidden md:flex">
-          {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              style={{
-                color: 'rgba(255,255,255,0.75)',
-                textDecoration: 'none',
-                fontSize: '0.9rem',
-                fontWeight: 500,
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => ((e.target as HTMLElement).style.color = '#f0c040')}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = 'rgba(255,255,255,0.75)')}
-            >
-              {l.label}
+        {!isMobile && (
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                style={{
+                  color: 'rgba(255,255,255,0.75)',
+                  textDecoration: 'none',
+                  fontSize: '0.85rem',
+                  fontWeight: 500,
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = '#f0c040')}
+                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = 'rgba(255,255,255,0.75)')}
+              >
+                {l.label}
+              </a>
+            ))}
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="gold-btn" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
+              <Phone size={14} />
+              Falar Agora
             </a>
-          ))}
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="gold-btn" style={{ fontSize: '0.85rem', padding: '0.6rem 1.25rem' }}>
-            <Phone size={15} />
-            Falar Agora
-          </a>
-        </nav>
+          </nav>
+        )}
 
         {/* Mobile Hamburger */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', padding: '0.25rem' }}
-          className="flex md:hidden"
-          aria-label="Menu"
-        >
-          {menuOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+        {isMobile && (
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', padding: '0.25rem' }}
+            aria-label="Menu"
+          >
+            {menuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        )}
       </div>
 
       {/* Mobile Menu */}
