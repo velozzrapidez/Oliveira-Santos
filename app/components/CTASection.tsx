@@ -102,22 +102,33 @@ export default function CTASection() {
               color: 'rgba(255,255,255,0.7)',
               fontSize: '1.15rem',
               lineHeight: 1.8,
-              marginBottom: '2.5rem',
+              marginBottom: '2rem',
             }}>
               Cada dia sem agir pode ser um dia de benefício perdido. Fale agora com um especialista e descubra o que você tem direito a receber.
             </p>
 
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp-btn pulse-glow"
-              id="final-cta-whatsapp-btn"
-              style={{ fontSize: '1.15rem', padding: '1.25rem 2.5rem', width: 'fit-content' }}
-            >
-              <MessageCircle size={24} />
-              Falar com advogado agora
-            </a>
+            <div style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '1.5rem',
+              marginBottom: '2.5rem'
+            }}>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp-btn pulse-glow"
+                id="final-cta-whatsapp-btn"
+                style={{ fontSize: '1.25rem', padding: '1.25rem 2.5rem', width: 'fit-content' }}
+              >
+                <MessageCircle size={24} />
+                QUERO MINHA ANÁLISE AGORA
+              </a>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#ff4444' }}>
+                <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ff4444' }} className="pulse-glow" />
+                <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>RESTAM APENAS 3 VAGAS PARA HOJE</span>
+              </div>
+            </div>
 
             {/* Guarantee badges */}
             <div style={{

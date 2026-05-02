@@ -138,18 +138,18 @@ export default function AuthoritySection() {
             <div className="gold-divider" style={{ marginBottom: '1.25rem' }} />
             <h2 style={{
               fontFamily: 'Playfair Display, serif',
-              fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)',
-              fontWeight: 700, color: '#fff',
-              lineHeight: 1.25, marginBottom: '1rem',
+              fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
+              fontWeight: 800, color: '#fff',
+              lineHeight: 1.1, marginBottom: '1.25rem',
             }}>
-              Quem cuida do <span className="gold-text">seu caso</span>
+              Especialista em causas de <span className="gold-text">alto risco contra o INSS</span>
             </h2>
             <p style={{
-              color: 'rgba(255,255,255,0.65)',
-              lineHeight: 1.75, fontSize: '1rem',
+              color: 'rgba(255,255,255,0.7)',
+              lineHeight: 1.8, fontSize: '1.1rem',
               marginBottom: '2rem',
             }}>
-              Dr. Ricardo Oliveira é advogado especialista em Direito Previdenciário com mais de 10 anos dedicados exclusivamente a causas do INSS. Já ajudou mais de mil famílias a conquistarem seus benefícios — e pode ajudar a sua também.
+              O <strong>Dr. Ricardo Oliveira (OAB/GO 67.890)</strong> é referência regional em Direito Previdenciário com foco exclusivo em reverter negativas do INSS. Com uma atuação técnica e dominante, ele lidera uma equipe que já recuperou milhões de reais em atrasados para centenas de aposentados.
             </p>
 
             {/* Credentials list */}

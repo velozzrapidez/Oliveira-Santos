@@ -113,12 +113,12 @@ body {
 
 /* Section base */
 .section-pad {
-  padding: 5rem 1.5rem;
+  padding: 6rem 1.5rem;
 }
 
 @media (min-width: 768px) {
   .section-pad {
-    padding: 6rem 2rem;
+    padding: 8.5rem 2rem;
   }
 }
 
@@ -164,8 +164,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 8px 32px rgba(37, 211, 102, 0.35); }
-  50% { box-shadow: 0 8px 48px rgba(37, 211, 102, 0.6); }
+  0%, 100% { box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 8px 56px rgba(37, 211, 102, 0.7); }
 }
 
 @keyframes bounce-soft {

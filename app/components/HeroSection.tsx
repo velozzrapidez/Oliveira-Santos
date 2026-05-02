@@ -111,86 +111,95 @@ export default function HeroSection() {
           textAlign: 'center',
         }}
       >
-        {/* Pre-headline badge */}
+        {/* Pre-headline badge with Urgency */}
         <div
           style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.5rem',
-            background: 'rgba(212,168,67,0.12)',
-            border: '1px solid rgba(212,168,67,0.3)',
+            background: 'rgba(212,168,67,0.15)',
+            border: '1px solid rgba(212,168,67,0.4)',
             borderRadius: '9999px',
-            padding: '0.5rem 1.25rem',
+            padding: '0.6rem 1.5rem',
             marginBottom: '2rem',
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
             transition: 'all 0.7s ease',
           }}
         >
-          <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#f0c040', display: 'inline-block' }} />
-          <span style={{ color: '#f0c040', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            Especialistas em INSS · Análise 100% Gratuita
+          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff4444', display: 'inline-block', boxShadow: '0 0 10px #ff4444' }} className="pulse-glow" />
+          <span style={{ color: '#fff', fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.05em' }}>
+            ÚLTIMAS VAGAS PARA ANÁLISE GRATUITA HOJE
           </span>
         </div>
 
-        {/* Main Headline */}
+        {/* Main Headline - More Aggressive */}
         <h1
           style={{
             fontFamily: 'Playfair Display, serif',
-            fontSize: 'clamp(2rem, 5vw, 3.75rem)',
+            fontSize: 'clamp(2.2rem, 6vw, 4rem)',
             fontWeight: 900,
-            lineHeight: 1.15,
+            lineHeight: 1.1,
             color: '#ffffff',
-            maxWidth: 860,
+            maxWidth: 950,
             margin: '0 auto 1.5rem',
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(28px)',
             transition: 'all 0.7s ease 0.15s',
           }}
         >
-          Teve seu benefício do INSS{' '}
-          <span className="gold-text">negado?</span>{' '}
-          Você pode estar perdendo dinheiro todos os meses.
+          Seu benefício foi <span className="gold-text">negado?</span> Você pode estar deixando de receber valores todos os meses.
         </h1>
 
-        {/* Subheadline */}
+        {/* Subheadline - More Direct */}
         <p
           style={{
-            fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
-            color: 'rgba(255,255,255,0.72)',
-            maxWidth: 640,
-            margin: '0 auto 2.75rem',
-            lineHeight: 1.7,
+            fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)',
+            color: 'rgba(255,255,255,0.85)',
+            maxWidth: 720,
+            margin: '0 auto 3rem',
+            lineHeight: 1.6,
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(24px)',
             transition: 'all 0.7s ease 0.3s',
           }}
         >
-          Fale agora com um advogado especialista e descubra se você tem direito a receber — sem custo e sem burocracia.
+          Descubra agora se você tem direito e como destravar seu pagamento — <strong style={{ color: '#f0c040' }}>análise gratuita em minutos.</strong>
         </p>
 
-        {/* CTA Button */}
+        {/* CTA Button - Stronger Glow & Feedback */}
         <div
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
             transition: 'all 0.7s ease 0.45s',
-            marginBottom: '3rem',
+            marginBottom: '3.5rem',
             display: 'flex',
-            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '1rem'
           }}
         >
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="whatsapp-btn bounce-soft"
-            style={{ fontSize: '1.1rem', padding: '1.125rem 2.5rem', whiteSpace: 'normal', textAlign: 'center' }}
+            className="whatsapp-btn pulse-glow"
+            style={{ 
+              fontSize: '1.25rem', 
+              padding: '1.25rem 3rem', 
+              whiteSpace: 'normal', 
+              textAlign: 'center',
+              boxShadow: '0 0 50px rgba(37, 211, 102, 0.4)' 
+            }}
             id="hero-whatsapp-btn"
           >
-            <MessageCircle size={22} />
-            Falar com Especialista no WhatsApp
+            <MessageCircle size={24} />
+            QUERO SABER SE TENHO DIREITO AGORA
           </a>
+          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', fontWeight: 500 }}>
+            ⚡ Resposta rápida por ordem de chegada
+          </span>
         </div>
 
         {/* Trust badges */}

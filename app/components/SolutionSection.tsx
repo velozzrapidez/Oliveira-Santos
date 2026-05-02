@@ -74,14 +74,26 @@ export default function SolutionSection() {
             <h2 style={{
               fontFamily: 'Playfair Display, serif',
               fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-              fontWeight: 700, color: '#fff',
+              fontWeight: 800, color: '#fff',
               lineHeight: 1.2, marginBottom: '1.5rem',
             }}>
               A solução que você precisava <span className="gold-text">finalmente existe</span>
             </h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, fontSize: '1.1rem', marginBottom: '2rem' }}>
-              O escritório <strong style={{ color: '#fff' }}>Oliveira & Santos</strong> é especializado em destravar benefícios negados e acelerar processos previdenciários. Nossa equipe conhece cada detalhe da legislação do INSS — e usa isso a seu favor.
+            <p style={{ color: 'rgba(255,255,255,0.7)', lineHeight: 1.8, fontSize: '1.1rem', marginBottom: '1.5rem' }}>
+              O escritório <strong style={{ color: '#fff' }}>Oliveira & Santos</strong> é especializado em destravar benefícios negados e acelerar processos previdenciários.
             </p>
+
+            <div style={{ 
+              background: 'rgba(212,168,67,0.1)', 
+              padding: '1.25rem', 
+              borderRadius: '1rem', 
+              border: '1px dashed rgba(212,168,67,0.4)',
+              marginBottom: '2rem'
+            }}>
+              <p style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}>
+                🎁 <span style={{ color: '#f0c040' }}>OFERTA LIMITADA:</span> A análise inicial do seu caso, que normalmente custaria <span style={{ textDecoration: 'line-through', opacity: 0.6 }}>R$ 150,00</span>, será 100% GRATUITA para quem entrar em contato agora.
+              </p>
+            </div>
 
             {/* Stats grid */}
             <div style={{
@@ -89,18 +101,18 @@ export default function SolutionSection() {
             }}>
               {stats.map(({ value, label }) => (
                 <div key={label} style={{
-                  background: 'rgba(212,168,67,0.05)',
-                  border: '1px solid rgba(212,168,67,0.15)',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '1rem',
-                  padding: '1.25rem',
+                  padding: '1rem',
                 }}>
                   <div style={{
                     fontFamily: 'Playfair Display, serif',
-                    fontSize: '1.8rem', fontWeight: 900,
+                    fontSize: '1.6rem', fontWeight: 900,
                     color: '#f0c040', lineHeight: 1,
                     marginBottom: '0.25rem',
                   }}>{value}</div>
-                  <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase' }}>{label}</div>
+                  <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase' }}>{label}</div>
                 </div>
               ))}
             </div>
@@ -109,12 +121,12 @@ export default function SolutionSection() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="whatsapp-btn"
+              className="whatsapp-btn pulse-glow"
               id="solution-whatsapp-btn"
               style={{ width: 'fit-content' }}
             >
               <MessageCircle size={20} />
-              Quero minha análise gratuita
+              GARANTIR MINHA CONSULTA GRATUITA
             </a>
           </div>
 

@@ -161,7 +161,28 @@ export default function TestimonialsSection() {
                     if (diff === -1) prevSlide();
                   }}
                 >
-                  <Quote size={28} color="rgba(212,168,67,0.25)" style={{ position: 'absolute', top: '1.5rem', right: '1.75rem' }} />
+                  {/* Result Badge */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    right: '1rem',
+                    background: 'rgba(34, 197, 94, 0.15)',
+                    border: '1px solid rgba(34, 197, 94, 0.4)',
+                    borderRadius: '0.5rem',
+                    padding: '0.35rem 0.75rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    zIndex: 2,
+                    boxShadow: '0 4px 12px rgba(34, 197, 94, 0.2)'
+                  }}>
+                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e' }} className="pulse-glow" />
+                    <span style={{ fontSize: '0.65rem', color: '#22c55e', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      {testimonial.result}
+                    </span>
+                  </div>
+
+                  <Quote size={24} color="rgba(212,168,67,0.2)" style={{ position: 'absolute', top: '1rem', left: '1rem' }} />
 
                   <div>
                     <StarRating count={testimonial.stars} />

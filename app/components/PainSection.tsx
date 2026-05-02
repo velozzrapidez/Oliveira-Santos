@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, Clock, FileX, HelpCircle } from 'lucide-react';
+import { AlertTriangle, Clock, FileX, HelpCircle, CheckCircle2, MessageCircle } from 'lucide-react';
+const WHATSAPP_URL = 'https://wa.me/5511999999999?text=Ol%C3%A1%21+Vim+pela+se%C3%A7%C3%A3o+de+identifica%C3%A7%C3%A3o+do+site.';
 
 const pains = [
   {
@@ -75,56 +76,83 @@ export default function PainSection() {
               style={{
                 fontFamily: 'Playfair Display, serif',
                 fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-                fontWeight: 700,
+                fontWeight: 800,
                 color: '#fff',
                 marginBottom: '1.5rem',
                 lineHeight: 1.2
               }}
             >
-              Sabemos o quanto isso é{' '}
-              <span className="gold-text">frustrante</span>
+              Você está passando por <span className="gold-text">alguma dessas situações?</span>
             </h2>
             <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '2.5rem', lineHeight: 1.8, fontSize: '1.1rem' }}>
-              Você trabalhou a vida inteira, contribuiu com o INSS durante anos e, quando mais precisou, recebeu uma negativa. Não está sozinho — e existe saída.
+              Se você se identifica com um dos pontos abaixo, você está perdendo tempo e dinheiro precioso todos os meses.
             </p>
 
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+                marginBottom: '2.5rem'
               }}
             >
-              {pains.map(({ icon: Icon, title, desc }, i) => (
-                <div
-                  key={title}
-                  style={{
+              {[
+                'Teve o benefício negado pelo INSS recentemente',
+                'Está esperando resposta há meses e nada acontece',
+                'Não sabe se já tem idade ou tempo para se aposentar',
+                'Acha que o valor que recebe hoje está errado (Revisão)',
+                'Precisa de auxílio-doença ou BPC/LOAS urgente'
+              ].map((item, i) => (
+                <div 
+                  key={i}
+                  style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '1rem', 
+                    background: 'rgba(255,255,255,0.03)', 
+                    padding: '1rem', 
+                    borderRadius: '0.75rem',
+                    border: '1px solid rgba(255,255,255,0.05)',
                     opacity: inView ? 1 : 0,
-                    transition: `opacity 0.6s ease ${0.1 * i + 0.3}s`,
+                    transform: inView ? 'translateX(0)' : 'translateX(-10px)',
+                    transition: `all 0.5s ease ${0.1 * i + 0.3}s`
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                    <Icon size={18} color="#f0c040" />
-                    <h3 style={{ fontWeight: 700, fontSize: '0.95rem', color: '#fff' }}>{title}</h3>
+                  <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(212,168,67,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <CheckCircle2 size={14} color="#f0c040" />
                   </div>
-                  <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, fontSize: '0.8rem' }}>{desc}</p>
+                  <span style={{ color: '#fff', fontWeight: 600, fontSize: '0.95rem' }}>{item}</span>
                 </div>
               ))}
             </div>
 
             <div
               style={{
-                marginTop: '3rem',
                 padding: '1.5rem',
                 background: 'rgba(212,168,67,0.05)',
                 borderLeft: '4px solid #d4a843',
                 borderRadius: '0.5rem',
+                marginBottom: '2rem'
               }}
             >
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6 }}>
-                "A burocracia do INSS foi pensada para ser complexa. Mas com a orientação certa, o que parece impossível se torna um processo claro."
+                "O erro da maioria é achar que o INSS vai resolver sozinho. Sem pressão técnica, seu caso fica parado no fundo da pilha."
+              </p>
+              <p style={{ marginTop: '0.5rem', color: '#d4a843', fontWeight: 700, fontSize: '0.8rem' }}>
+                — DR. RICARDO OLIVEIRA (OAB/GO)
               </p>
             </div>
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-btn pulse-glow"
+              style={{ width: 'fit-content' }}
+            >
+              <MessageCircle size={20} />
+              QUERO RESOLVER MINHA SITUAÇÃO
+            </a>
           </div>
 
           {/* Right: Image */}
