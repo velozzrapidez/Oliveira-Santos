@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Oliveira & Santos Advocacia | Especialistas em Direito Previdenciário INSS",
+  title: "Advogado Previdenciário em Itumbiara | Oliveira & Santos Advocacia INSS",
   description:
-    "Teve seu benefício do INSS negado? Somos especializados em Direito Previdenciário: aposentadoria, auxílio-doença, BPC/LOAS e revisão de benefícios. Análise gratuita do seu caso.",
+    "Procurando advogado especialista em INSS em Itumbiara e região? Teve seu benefício negado? Resolvemos casos de Aposentadoria, BPC/LOAS e Auxílio-Doença. Atendimento presencial e online.",
   keywords:
-    "advogado previdenciário, INSS, aposentadoria, benefício negado, auxílio doença, BPC LOAS, direito previdenciário",
+    "advogado previdenciário Itumbiara, advogado INSS Itumbiara, escritório de advocacia Itumbiara, aposentadoria Itumbiara, benefício negado INSS, auxílio doença Itumbiara GO, BPC LOAS",
   openGraph: {
-    title: "Oliveira & Santos Advocacia | Direito Previdenciário",
+    title: "Advogado Especialista em INSS em Itumbiara - Oliveira & Santos",
     description:
-      "Teve seu benefício do INSS negado? Fale com especialistas agora. Análise gratuita do seu caso.",
+      "Aposentadoria, revisões e benefícios negados pelo INSS. Fale com nossos advogados em Itumbiara e tenha uma análise gratuita do seu caso.",
     type: "website",
     locale: "pt_BR",
   },
