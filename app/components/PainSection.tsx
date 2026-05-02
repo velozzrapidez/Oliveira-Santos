@@ -49,103 +49,123 @@ export default function PainSection() {
       id="problema"
       className="section-pad"
       style={{ 
-        backgroundImage: 'linear-gradient(180deg, rgba(4, 9, 26, 0.98) 0%, rgba(8, 14, 30, 0.85) 50%, rgba(4, 9, 26, 0.98) 100%), url("/idososnahorta.webp")', 
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        position: 'relative' 
+        background: 'linear-gradient(180deg, #04091a 0%, #0a1628 100%)',
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
-      {/* Top border accent */}
       <div style={{ position: 'absolute', top: 0, left: '10%', right: '10%', height: 1, background: 'linear-gradient(90deg, transparent, rgba(212,168,67,0.3), transparent)' }} />
 
       <div className="container-max" style={{ padding: '0 1.5rem' }}>
-        {/* Header */}
-        <div
-          style={{
-            textAlign: 'center',
-            marginBottom: '3.5rem',
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(350px, 100%), 1fr))', 
+          gap: '4rem', 
+          alignItems: 'center' 
+        }}>
+          
+          {/* Left: Content */}
+          <div style={{
             opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0)' : 'translateY(24px)',
-            transition: 'all 0.7s ease',
-          }}
-        >
-          <div className="gold-divider" style={{ margin: '0 auto 1.25rem' }} />
-          <h2
-            style={{
-              fontFamily: 'Playfair Display, serif',
-              fontSize: 'clamp(1.6rem, 3.5vw, 2.5rem)',
-              fontWeight: 700,
-              color: '#fff',
-              marginBottom: '1rem',
-            }}
-          >
-            Sabemos o quanto isso é{' '}
-            <span className="gold-text">frustrante</span>
-          </h2>
-          <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: 580, margin: '0 auto', lineHeight: 1.7, fontSize: '1.05rem' }}>
-            Você trabalhou a vida inteira, contribuiu com o INSS durante anos e, quando mais precisou, recebeu uma negativa. Não está sozinho — e existe saída.
-          </p>
-        </div>
-
-        {/* Pain cards */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '1.25rem',
-          }}
-        >
-          {pains.map(({ icon: Icon, title, desc }, i) => (
-            <div
-              key={title}
-              className="glass-card"
+            transform: inView ? 'translateX(0)' : 'translateX(-30px)',
+            transition: 'all 0.8s ease',
+          }}>
+            <div className="gold-divider" style={{ marginBottom: '1.25rem' }} />
+            <h2
               style={{
-                padding: '1.75rem',
-                opacity: inView ? 1 : 0,
-                transform: inView ? 'translateY(0)' : 'translateY(28px)',
-                transition: `all 0.6s ease ${0.1 * i + 0.2}s`,
+                fontFamily: 'Playfair Display, serif',
+                fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+                fontWeight: 700,
+                color: '#fff',
+                marginBottom: '1.5rem',
+                lineHeight: 1.2
               }}
             >
-              <div
-                style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: '12px',
-                  background: 'rgba(212,168,67,0.1)',
-                  border: '1px solid rgba(212,168,67,0.2)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1.25rem',
-                }}
-              >
-                <Icon size={22} color="#f0c040" />
-              </div>
-              <h3 style={{ fontWeight: 700, fontSize: '1.05rem', color: '#fff', marginBottom: '0.625rem' }}>{title}</h3>
-              <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: 1.65, fontSize: '0.9rem' }}>{desc}</p>
-            </div>
-          ))}
-        </div>
+              Sabemos o quanto isso é{' '}
+              <span className="gold-text">frustrante</span>
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: '2.5rem', lineHeight: 1.8, fontSize: '1.1rem' }}>
+              Você trabalhou a vida inteira, contribuiu com o INSS durante anos e, quando mais precisou, recebeu uma negativa. Não está sozinho — e existe saída.
+            </p>
 
-        {/* Bottom empathy quote */}
-        <div
-          style={{
-            marginTop: '3rem',
-            padding: '2rem 2.5rem',
-            background: 'rgba(212,168,67,0.06)',
-            border: '1px solid rgba(212,168,67,0.2)',
-            borderLeft: '4px solid #d4a843',
-            borderRadius: '1rem',
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '1.5rem',
+              }}
+            >
+              {pains.map(({ icon: Icon, title, desc }, i) => (
+                <div
+                  key={title}
+                  style={{
+                    opacity: inView ? 1 : 0,
+                    transition: `opacity 0.6s ease ${0.1 * i + 0.3}s`,
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                    <Icon size={18} color="#f0c040" />
+                    <h3 style={{ fontWeight: 700, fontSize: '0.95rem', color: '#fff' }}>{title}</h3>
+                  </div>
+                  <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.5, fontSize: '0.8rem' }}>{desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div
+              style={{
+                marginTop: '3rem',
+                padding: '1.5rem',
+                background: 'rgba(212,168,67,0.05)',
+                borderLeft: '4px solid #d4a843',
+                borderRadius: '0.5rem',
+              }}
+            >
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.95rem', fontStyle: 'italic', lineHeight: 1.6 }}>
+                "A burocracia do INSS foi pensada para ser complexa. Mas com a orientação certa, o que parece impossível se torna um processo claro."
+              </p>
+            </div>
+          </div>
+
+          {/* Right: Image */}
+          <div style={{
             opacity: inView ? 1 : 0,
-            transition: 'opacity 0.7s ease 0.6s',
-          }}
-        >
-          <p style={{ color: 'rgba(255,255,255,0.8)', lineHeight: 1.75, fontSize: '1rem', fontStyle: 'italic' }}>
-            "A burocracia do INSS foi pensada para ser complexa. Mas com a orientação certa, o que parece impossível se torna um processo claro e direto."
-          </p>
-          <p style={{ marginTop: '0.75rem', color: '#d4a843', fontWeight: 600, fontSize: '0.875rem' }}>
-            — Dr. Ricardo Oliveira, Advogado Previdenciário
-          </p>
+            transform: inView ? 'translateX(0)' : 'translateX(30px)',
+            transition: 'all 0.8s ease 0.2s',
+            position: 'relative'
+          }}>
+            <div style={{
+              position: 'relative',
+              borderRadius: '2rem',
+              overflow: 'hidden',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+              border: '1px solid rgba(212,168,67,0.2)'
+            }}>
+              <img 
+                src="/idososnahorta.webp" 
+                alt="Idosos na horta" 
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(4,9,26,0.4), transparent)'
+              }} />
+            </div>
+            
+            {/* Decorative element */}
+            <div style={{
+              position: 'absolute',
+              top: '-15px',
+              right: '-15px',
+              width: '100px',
+              height: '100px',
+              border: '2px solid rgba(212,168,67,0.3)',
+              borderRadius: '1rem',
+              zIndex: -1
+            }} />
+          </div>
+
         </div>
       </div>
     </section>
