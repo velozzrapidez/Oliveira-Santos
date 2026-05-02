@@ -126,8 +126,13 @@ export default function Header() {
       {menuOpen && (
         <div
           style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
             background: 'rgba(10,22,40,0.98)',
             borderTop: '1px solid rgba(212,168,67,0.15)',
+            borderBottom: '1px solid rgba(212,168,67,0.15)',
             padding: '1.5rem',
             display: 'flex',
             flexDirection: 'column',

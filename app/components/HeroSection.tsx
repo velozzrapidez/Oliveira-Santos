@@ -176,6 +176,8 @@ export default function HeroSection() {
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
             transition: 'all 0.7s ease 0.45s',
             marginBottom: '3rem',
+            display: 'flex',
+            justifyContent: 'center',
           }}
         >
           <a
@@ -183,7 +185,7 @@ export default function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="whatsapp-btn bounce-soft"
-            style={{ fontSize: '1.1rem', padding: '1.125rem 2.5rem' }}
+            style={{ fontSize: '1.1rem', padding: '1.125rem 2.5rem', whiteSpace: 'normal', textAlign: 'center' }}
             id="hero-whatsapp-btn"
           >
             <MessageCircle size={22} />
