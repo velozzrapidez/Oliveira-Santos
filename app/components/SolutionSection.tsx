@@ -46,7 +46,6 @@ export default function SolutionSection() {
         backgroundImage: 'linear-gradient(180deg, rgba(8, 14, 30, 0.95) 0%, rgba(10, 22, 40, 0.85) 50%, rgba(10, 22, 40, 0.95) 100%), url("/filhosegurandodedodopai.webp")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -60,7 +59,7 @@ export default function SolutionSection() {
       }} />
 
       <div className="container-max" style={{ padding: '0 1.5rem', position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '2.5rem', alignItems: 'center' }}>
 
           {/* Left: Text */}
           <div style={{

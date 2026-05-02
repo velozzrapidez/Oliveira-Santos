@@ -40,7 +40,6 @@ export default function CTASection() {
         backgroundImage: 'linear-gradient(160deg, rgba(10, 22, 40, 0.95) 0%, rgba(15, 31, 61, 0.85) 50%, rgba(10, 22, 40, 0.98) 100%), url("/idososorrindo.webp")',
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
-        backgroundAttachment: 'fixed',
       }}
     >
       {/* Decorative blobs */}

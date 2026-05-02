@@ -52,7 +52,6 @@ export default function PainSection() {
         backgroundImage: 'linear-gradient(180deg, rgba(4, 9, 26, 0.98) 0%, rgba(8, 14, 30, 0.85) 50%, rgba(4, 9, 26, 0.98) 100%), url("/idososnahorta.webp")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
         position: 'relative' 
       }}
     >

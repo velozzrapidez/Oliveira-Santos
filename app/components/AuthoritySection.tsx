@@ -56,7 +56,7 @@ export default function AuthoritySection() {
       <div className="container-max" style={{ padding: '0 1.5rem', position: 'relative', zIndex: 1 }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
           gap: '3.5rem',
           alignItems: 'center',
         }}>
@@ -72,6 +72,7 @@ export default function AuthoritySection() {
               {/* Photo with gradient overlay for text */}
               <div style={{
                 width: 280,
+                maxWidth: '100%',
                 height: 380,
                 borderRadius: '1.5rem',
                 backgroundImage: 'url("/foto.webp")',

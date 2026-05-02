@@ -107,7 +107,7 @@ export default function TestimonialsSection() {
 
         {/* 3D Carousel Container */}
         <div 
-          style={{ position: 'relative', width: '100%', maxWidth: '800px', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center', perspective: '1000px' }}
+          style={{ position: 'relative', width: '100%', maxWidth: '800px', height: '420px', display: 'flex', justifyContent: 'center', alignItems: 'center', perspective: '1200px' }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -143,8 +143,7 @@ export default function TestimonialsSection() {
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                   style={{
                     position: 'absolute',
-                    width: '100%',
-                    maxWidth: '450px',
+                    width: 'min(90vw, 450px)',
                     background: isActive ? 'rgba(15, 31, 61, 0.95)' : 'rgba(255,255,255,0.03)',
                     border: `1px solid ${isActive ? 'rgba(212,168,67,0.4)' : 'rgba(255,255,255,0.08)'}`,
                     borderRadius: '1.25rem',

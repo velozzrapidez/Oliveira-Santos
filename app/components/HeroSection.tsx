@@ -3,6 +3,17 @@
 import { MessageCircle, CheckCircle, Smartphone, Gift, ChevronDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+}
+
 const WHATSAPP_URL =
   'https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+uma+an%C3%A1lise+gratuita+do+meu+caso+no+INSS.';
 
@@ -15,6 +26,7 @@ const badges = [
 export default function HeroSection() {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 100);
@@ -33,9 +45,11 @@ export default function HeroSection() {
         justifyContent: 'center',
         overflow: 'hidden',
         backgroundColor: '#04091a',
-        backgroundImage: 'linear-gradient(to right, #04091a 25%, rgba(4, 9, 26, 0.85) 45%, rgba(10, 22, 40, 0.15) 100%), url("/imgcabecalho.webp")',
-        backgroundSize: '100% 100%, 75%',
-        backgroundPosition: 'center, right -5% center',
+        backgroundImage: isMobile
+          ? 'linear-gradient(180deg, rgba(4,9,26,0.85) 0%, rgba(4,9,26,0.97) 60%), url("/imgcabecalho.webp")'
+          : 'linear-gradient(to right, #04091a 25%, rgba(4, 9, 26, 0.85) 45%, rgba(10, 22, 40, 0.15) 100%), url("/imgcabecalho.webp")',
+        backgroundSize: isMobile ? 'cover' : '100% 100%, 75%',
+        backgroundPosition: isMobile ? 'center' : 'center, right -5% center',
         backgroundRepeat: 'no-repeat',
       }}
     >
