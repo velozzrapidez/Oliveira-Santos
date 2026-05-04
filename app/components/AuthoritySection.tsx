@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Award, BookOpen, Briefcase, Star, MessageCircle } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
 const WHATSAPP_URL =
   'https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+uma+an%C3%A1lise+gratuita+do+meu+caso+no+INSS.';
@@ -13,22 +14,9 @@ const credentials = [
   { icon: Star, label: '+1.000 casos resolvidos', desc: 'Histórico comprovado de resultados para clientes' },
 ];
 
-function useInView(ref: React.RefObject<Element | null>) {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.12 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [ref]);
-  return inView;
-}
-
 export default function AuthoritySection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
     <section
@@ -41,156 +29,185 @@ export default function AuthoritySection() {
         overflow: 'hidden',
       }}
     >
-      {/* Decorative */}
-      <div style={{
-        position: 'absolute', bottom: '-15%', right: '-10%',
-        width: 450, height: 450, borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%)',
-        pointerEvents: 'none',
-      }} />
-      <div style={{
-        position: 'absolute', top: 0, left: '5%', right: '5%', height: 1,
-        background: 'linear-gradient(90deg, transparent, rgba(212,168,67,0.2), transparent)',
-      }} />
-
+      {/* Decorative Orbs */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 1.5 }}
+        style={{
+          position: 'absolute', bottom: '-15%', right: '-10%',
+          width: 450, height: 450, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(212,168,67,0.08) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} 
+      />
+      
       <div className="container-max" style={{ padding: '0 1.5rem', position: 'relative', zIndex: 1 }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
-          gap: '3.5rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))',
+          gap: '4rem',
           alignItems: 'center',
         }}>
 
-          {/* Left: Photo placeholder + name */}
-          <div style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateX(0)' : 'translateX(-30px)',
-            transition: 'all 0.8s ease',
-          }}>
-            {/* Avatar / Photo block */}
-            <div style={{ position: 'relative', display: 'inline-block', marginBottom: '2rem' }}>
-              {/* Photo with gradient overlay for text */}
+          {/* Left: Professional Photo Presentation */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          >
+            <div style={{ position: 'relative', padding: '1rem' }}>
+              {/* Outer Decorative Frame */}
               <div style={{
-                width: 280,
-                maxWidth: '100%',
-                height: 380,
-                borderRadius: '1.5rem',
+                position: 'absolute',
+                inset: 0,
+                border: '1px solid rgba(212, 168, 67, 0.2)',
+                borderRadius: '2rem',
+                transform: 'rotate(-3deg)',
+                zIndex: 0
+              }} />
+
+              {/* Main Photo Container */}
+              <div className="corporate-border" style={{
+                width: 300,
+                height: 420,
+                borderRadius: '1.75rem',
                 backgroundImage: 'url("/foto.webp")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center top',
-                border: '2px solid rgba(212,168,67,0.25)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-end',
                 overflow: 'hidden',
                 position: 'relative',
-                boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                zIndex: 1,
+                boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
               }}>
-                {/* Floating Text Overlay */}
+                {/* Floating Info Overlay */}
                 <div style={{
-                  width: '100%', padding: '2rem 1.25rem 1.25rem',
-                  background: 'linear-gradient(0deg, rgba(4,9,26,0.95) 0%, rgba(4,9,26,0.7) 50%, transparent 100%)',
+                  width: '100%', padding: '2.5rem 1.5rem 1.5rem',
+                  background: 'linear-gradient(0deg, rgba(4,9,26,0.98) 0%, rgba(4,9,26,0.7) 60%, transparent 100%)',
                   textAlign: 'center',
                 }}>
-                  <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.15rem', color: '#fff' }}>
+                  <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, fontSize: '1.4rem', color: '#fff', marginBottom: '0.25rem' }}>
                     Dr. Ricardo Oliveira
                   </div>
-                  <div style={{ fontSize: '0.75rem', color: '#d4a843', fontWeight: 600, marginTop: '0.3rem', letterSpacing: '0.05em' }}>
-                    Advogado Previdenciário
+                  <div style={{ fontSize: '0.8rem', color: '#d4a843', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+                    Especialista Sênior
                   </div>
                 </div>
               </div>
 
-              {/* Floating badge */}
-              <div style={{
-                position: 'absolute', top: '1rem', right: '-1.5rem',
-                background: 'linear-gradient(135deg, #f0c040, #c9a84c)',
-                color: '#04091a', borderRadius: '0.875rem',
-                padding: '0.5rem 0.875rem',
-                boxShadow: '0 8px 24px rgba(212,168,67,0.4)',
-                fontSize: '0.75rem', fontWeight: 800,
-                textAlign: 'center', lineHeight: 1.3,
-                whiteSpace: 'nowrap',
-              }}>
-                OAB/SP<br />Ativo
-              </div>
+              {/* Floating Status Badge */}
+              <motion.div 
+                initial={{ scale: 0, rotate: 15 }}
+                animate={isInView ? { scale: 1, rotate: 12 } : {}}
+                transition={{ delay: 0.5, type: 'spring' }}
+                style={{
+                  position: 'absolute', top: '10%', right: '-2rem',
+                  background: 'linear-gradient(135deg, #f0c040, #c9a84c)',
+                  color: '#04091a', borderRadius: '1rem',
+                  padding: '0.75rem 1.25rem',
+                  boxShadow: '0 12px 32px rgba(212,168,67,0.5)',
+                  fontSize: '0.8rem', fontWeight: 900,
+                  textAlign: 'center', lineHeight: 1.2,
+                  zIndex: 2,
+                }}
+              >
+                OAB/SP<br />REGULAR
+              </motion.div>
             </div>
 
-            {/* Quote */}
-            <blockquote style={{
-              borderLeft: '3px solid #d4a843',
-              paddingLeft: '1.25rem',
-              color: 'rgba(255,255,255,0.7)',
-              lineHeight: 1.7,
-              fontStyle: 'italic',
-              fontSize: '0.95rem',
-            }}>
-              "Acredito que todo trabalhador brasileiro merece acesso a seus direitos previdenciários sem precisar entender juridiquês. Por isso, explico cada passo com clareza e luto pelo que é justo."
-            </blockquote>
-          </div>
+            <motion.blockquote 
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              style={{
+                marginTop: '2.5rem',
+                borderLeft: '4px solid #d4a843',
+                paddingLeft: '1.5rem',
+                color: 'rgba(255,255,255,0.7)',
+                lineHeight: 1.7,
+                fontStyle: 'italic',
+                fontSize: '1rem',
+                maxWidth: 320
+              }}
+            >
+              "Minha missão é garantir que a justiça seja feita para quem contribuiu a vida toda e agora precisa do Estado."
+            </motion.blockquote>
+          </motion.div>
 
-          {/* Right: Credentials */}
-          <div style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateX(0)' : 'translateX(30px)',
-            transition: 'all 0.8s ease 0.2s',
-          }}>
-            <div className="gold-divider" style={{ marginBottom: '1.25rem' }} />
+          {/* Right: Corporate Details */}
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
+            <div className="gold-divider" style={{ marginBottom: '1.5rem' }} />
             <h2 style={{
               fontFamily: 'Playfair Display, serif',
-              fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
-              fontWeight: 800, color: '#fff',
-              lineHeight: 1.1, marginBottom: '1.25rem',
+              fontSize: 'clamp(2rem, 5vw, 3rem)',
+              fontWeight: 900, color: '#fff',
+              lineHeight: 1.1, marginBottom: '1.5rem',
             }}>
-              Especialista em causas de <span className="gold-text">alto risco contra o INSS</span>
+              Domínio Técnico em <span className="gold-text">Causas Complexas</span>
             </h2>
             <p style={{
               color: 'rgba(255,255,255,0.7)',
-              lineHeight: 1.8, fontSize: '1.1rem',
-              marginBottom: '2rem',
+              lineHeight: 1.8, fontSize: '1.15rem',
+              marginBottom: '2.5rem',
             }}>
-              O <strong>Dr. Ricardo Oliveira (OAB/GO 67.890)</strong> é referência regional em Direito Previdenciário com foco exclusivo em reverter negativas do INSS. Com uma atuação técnica e dominante, ele lidera uma equipe que já recuperou milhões de reais em atrasados para centenas de aposentados.
+              Com mais de uma década de dedicação exclusiva ao Direito Previdenciário, o <strong>Dr. Ricardo Oliveira</strong> construiu uma reputação de excelência em Itumbiara e região. Sua abordagem combina rigor técnico e atendimento humanizado.
             </p>
 
             {/* Credentials list */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '3rem' }}>
               {credentials.map(({ icon: Icon, label, desc }, i) => (
-                <div key={label} style={{
-                  display: 'flex', alignItems: 'flex-start', gap: '1rem',
-                  padding: '1rem 1.25rem',
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: '0.875rem',
-                  opacity: inView ? 1 : 0,
-                  transition: `opacity 0.5s ease ${0.35 + i * 0.1}s`,
-                }}>
+                <motion.div 
+                  key={label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
+                  className="glass-panel hover-lift"
+                  style={{
+                    display: 'flex', alignItems: 'flex-start', gap: '1.25rem',
+                    padding: '1.25rem 1.5rem',
+                    borderRadius: '1.25rem',
+                  }}
+                >
                   <div style={{
-                    width: 40, height: 40, borderRadius: '10px', flexShrink: 0,
-                    background: 'rgba(212,168,67,0.1)',
-                    border: '1px solid rgba(212,168,67,0.2)',
+                    width: 48, height: 48, borderRadius: '12px', flexShrink: 0,
+                    background: 'linear-gradient(135deg, rgba(212,168,67,0.2), rgba(212,168,67,0.05))',
+                    border: '1px solid rgba(212,168,67,0.3)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
-                    <Icon size={18} color="#f0c040" />
+                    <Icon size={22} color="#f0c040" />
                   </div>
                   <div>
-                    <div style={{ fontWeight: 700, color: '#fff', fontSize: '0.9rem', marginBottom: '0.2rem' }}>{label}</div>
-                    <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem' }}>{desc}</div>
+                    <div style={{ fontWeight: 800, color: '#fff', fontSize: '1rem', marginBottom: '0.25rem' }}>{label}</div>
+                    <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem', lineHeight: 1.5 }}>{desc}</div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp-btn"
-              id="authority-whatsapp-btn"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <MessageCircle size={20} />
-              Falar com Dr. Ricardo agora
-            </a>
-          </div>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="whatsapp-btn pulse-glow"
+                style={{ padding: '1.25rem 2.5rem', fontSize: '1.1rem' }}
+              >
+                <MessageCircle size={22} />
+                AGENDAR CONSULTA COM O DOUTOR
+              </a>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

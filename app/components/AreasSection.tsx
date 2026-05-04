@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import {
   Users, RefreshCw, HeartPulse, Accessibility, Baby, MessageCircle,
 } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
 const WHATSAPP_URL =
   'https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+uma+an%C3%A1lise+gratuita+do+meu+caso+no+INSS.';
@@ -47,22 +48,9 @@ const areas = [
   },
 ];
 
-function useInView(ref: React.RefObject<Element | null>) {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [ref]);
-  return inView;
-}
-
 export default function AreasSection() {
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <section
@@ -78,54 +66,57 @@ export default function AreasSection() {
 
       <div className="container-max" style={{ padding: '0 1.5rem' }}>
         {/* Header */}
-        <div style={{
-          textAlign: 'center', marginBottom: '3.5rem',
-          opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(24px)',
-          transition: 'all 0.7s ease',
-        }}>
-          <div className="gold-divider" style={{ margin: '0 auto 1.25rem' }} />
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          style={{ textAlign: 'center', marginBottom: '4.5rem' }}
+        >
+          <div className="gold-divider" style={{ margin: '0 auto 1.5rem' }} />
           <h2 style={{
             fontFamily: 'Playfair Display, serif',
-            fontSize: 'clamp(1.6rem, 3.5vw, 2.5rem)',
-            fontWeight: 700, color: '#fff', marginBottom: '1rem',
+            fontSize: 'clamp(2rem, 5vw, 3rem)',
+            fontWeight: 900, color: '#fff', marginBottom: '1.25rem',
           }}>
-            Áreas de <span className="gold-text">Atuação</span>
+            Especialidades <span className="gold-text">Dominantes</span>
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: 540, margin: '0 auto', lineHeight: 1.7 }}>
-            Atuamos em todas as principais áreas do Direito Previdenciário. Se o seu caso não está na lista, fale conosco — provavelmente também podemos ajudar.
+          <p style={{ color: 'rgba(255,255,255,0.65)', maxWidth: 650, margin: '0 auto', lineHeight: 1.8, fontSize: '1.1rem' }}>
+            Nossa expertise cobre todo o espectro previdenciário, com foco em resultados práticos e na reversão de negativas administrativas e judiciais.
           </p>
-        </div>
+        </motion.div>
 
         {/* Cards Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1.25rem',
-          marginBottom: '3rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '1.5rem',
+          marginBottom: '4rem',
         }}>
           {areas.map(({ icon: Icon, title, desc, tag }, i) => (
-            <div
+            <motion.div
               key={title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              whileHover={{ y: -10 }}
               className="glass-card"
               style={{
-                padding: '2rem 1.75rem',
+                padding: '2.5rem 2rem',
                 position: 'relative',
                 overflow: 'hidden',
-                opacity: inView ? 1 : 0,
-                transform: inView ? 'translateY(0)' : 'translateY(28px)',
-                transition: `all 0.6s ease ${0.08 * i + 0.2}s`,
               }}
             >
               {/* Tag */}
               {tag && (
                 <div style={{
-                  position: 'absolute', top: '1rem', right: '1rem',
-                  background: 'rgba(212,168,67,0.15)',
-                  border: '1px solid rgba(212,168,67,0.35)',
+                  position: 'absolute', top: '1.25rem', right: '1.25rem',
+                  background: 'rgba(212,168,67,0.2)',
+                  border: '1px solid rgba(212,168,67,0.4)',
                   borderRadius: '9999px',
-                  padding: '0.2rem 0.7rem',
-                  fontSize: '0.7rem', fontWeight: 600,
-                  color: '#f0c040', letterSpacing: '0.04em',
+                  padding: '0.3rem 0.8rem',
+                  fontSize: '0.7rem', fontWeight: 800,
+                  color: '#f0c040', letterSpacing: '0.1em',
+                  textTransform: 'uppercase'
                 }}>
                   {tag}
                 </div>
@@ -133,40 +124,38 @@ export default function AreasSection() {
 
               {/* Icon */}
               <div style={{
-                width: 52, height: 52, borderRadius: '14px',
-                background: 'linear-gradient(135deg, rgba(212,168,67,0.15), rgba(212,168,67,0.05))',
-                border: '1px solid rgba(212,168,67,0.25)',
+                width: 56, height: 56, borderRadius: '16px',
+                background: 'linear-gradient(135deg, rgba(212,168,67,0.2), rgba(212,168,67,0.05))',
+                border: '1px solid rgba(212,168,67,0.3)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                marginBottom: '1.25rem',
+                marginBottom: '1.5rem',
               }}>
-                <Icon size={24} color="#f0c040" />
+                <Icon size={26} color="#f0c040" />
               </div>
 
               <h3 style={{
                 fontFamily: 'Playfair Display, serif',
-                fontWeight: 700, fontSize: '1.1rem',
-                color: '#fff', marginBottom: '0.625rem',
+                fontWeight: 800, fontSize: '1.25rem',
+                color: '#fff', marginBottom: '0.75rem',
               }}>{title}</h3>
-              <p style={{ color: 'rgba(255,255,255,0.58)', lineHeight: 1.65, fontSize: '0.88rem' }}>{desc}</p>
+              <p style={{ color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, fontSize: '0.95rem', marginBottom: '1.5rem' }}>{desc}</p>
 
               {/* Bottom CTA */}
-              <a
+              <motion.a
+                whileHover={{ x: 5 }}
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.375rem',
-                  marginTop: '1.25rem', color: '#d4a843',
-                  fontSize: '0.83rem', fontWeight: 600, textDecoration: 'none',
-                  transition: 'gap 0.2s',
+                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  color: '#d4a843',
+                  fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none',
                 }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.gap = '0.6rem')}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.gap = '0.375rem')}
               >
-                <MessageCircle size={14} />
-                Verificar meu direito →
-              </a>
-            </div>
+                <MessageCircle size={16} />
+                Consultar viabilidade
+              </motion.a>
+            </motion.div>
           ))}
         </div>
       </div>

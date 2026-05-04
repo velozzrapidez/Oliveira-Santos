@@ -1,7 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Calculator, ChevronRight, CheckCircle2, ArrowRight, MessageCircle, AlertCircle } from 'lucide-react';
+import { 
+  Calculator, ChevronRight, CheckCircle2, ArrowRight, MessageCircle, AlertCircle,
+  FileCheck, TrendingUp, Activity, PlusCircle, XCircle, Hourglass, Search,
+  Zap, ShieldCheck, Award
+} from 'lucide-react';
 
 const WHATSAPP_URL = 'https://wa.me/5511999999999?text=Ol%C3%A1%21+Finalizei+o+simulador+e+gostaria+de+saber+meu+resultado.';
 
@@ -10,28 +14,28 @@ const steps = [
     id: 1,
     question: 'Qual o seu objetivo principal hoje?',
     options: [
-      { label: 'Aposentar pela primeira vez', icon: '👴' },
-      { label: 'Revisar valor que já recebo', icon: '💰' },
-      { label: 'Destravar auxílio-doença/BPC', icon: '🏥' },
-      { label: 'Outro benefício do INSS', icon: '📄' },
+      { label: 'Aposentar pela primeira vez', icon: FileCheck },
+      { label: 'Revisar valor que já recebo', icon: TrendingUp },
+      { label: 'Destravar auxílio-doença/BPC', icon: Activity },
+      { label: 'Outro benefício do INSS', icon: PlusCircle },
     ]
   },
   {
     id: 2,
     question: 'Você já teve algum benefício NEGADO pelo INSS?',
     options: [
-      { label: 'Sim, uma ou mais vezes', icon: '❌' },
-      { label: 'Ainda não pedi', icon: '⏳' },
-      { label: 'Está em análise', icon: '🔍' },
+      { label: 'Sim, uma ou mais vezes', icon: XCircle },
+      { label: 'Ainda não pedi', icon: Hourglass },
+      { label: 'Está em análise', icon: Search },
     ]
   },
   {
     id: 3,
     question: 'Há quanto tempo você contribui para o INSS?',
     options: [
-      { label: 'Menos de 15 anos', icon: '🌱' },
-      { label: 'Entre 15 e 25 anos', icon: '🌿' },
-      { label: 'Mais de 25 anos', icon: '🌳' },
+      { label: 'Menos de 15 anos', icon: Zap },
+      { label: 'Entre 15 e 25 anos', icon: ShieldCheck },
+      { label: 'Mais de 25 anos', icon: Award },
     ]
   }
 ];
@@ -132,7 +136,7 @@ export default function SimulatorSection() {
                       e.currentTarget.style.transform = 'translateX(0)';
                     }}
                   >
-                    <span style={{ fontSize: '1.5rem' }}>{opt.icon}</span>
+                    <opt.icon size={24} color="#f0c040" style={{ flexShrink: 0 }} />
                     <span style={{ fontWeight: 600 }}>{opt.label}</span>
                     <ChevronRight size={18} style={{ marginLeft: 'auto', opacity: 0.3 }} />
                   </button>
